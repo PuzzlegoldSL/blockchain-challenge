@@ -1,0 +1,90 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-12" style="margin-left: 1rem; margin-right: 1rem">
+
+    <app-hodling-add [availableCryptosMetadata]="availableCryptosMetadata" [(hodlings)]="hodlings"></app-hodling-add>
+
+        <div class="container">
+
+            <div class="row pb-4">
+                <div class="col-12">
+                    <button class="btn btn-primary" (click)="onHodlingAdded()" *ngIf="hasHodlings">Calcular</button>
+                    <button class="btn btn-secondary" (click)="clearAllHodling()" *ngIf="hasHodlings">Limpiar todo</button>
+                </div>
+            </div>
+
+
+            <div class="row" *ngIf="showBalance">
+            <div class="col-sm-12 col-xl-6">
+                <div class="card card-accent-info">
+                    <div class="text-center">
+                        <div class="card-header">
+                            Rendimiento
+                        </div>
+                        <div class="card-body">
+                            <p class="h1">{{totalEurosProfitPercent}}%</p>
+                            <p class="h3">{{totalEurosProfit}} €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.col-->
+            <div class="col-sm-12 col-xl-6" >
+                <div class="card card-accent-info">
+                    <div class="text-center">
+                        <div class="card-header">
+                            Balance
+                        </div>
+                        <div class="card-body">
+                            <p class="h1">{{ totalBalanceInBtc | number:'1.0-4' }} BTC</p>
+                            <p class="h3">{{ totalBalanceInEur | number:'1.0-4' }} €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.col-->
+        </div>
+
+
+        <div class="row">
+      <div class="col-sm-6" *ngFor="let hodling of cryptos">
+        <div class="card card-accent-warning" >
+          <div class="btn-group float-right card-header" dropdown>
+
+            <img [src]="hodling.logo" style="width: 2.5rem">
+            <div class="text-value align-content-center" style="margin: 5px">{{hodling.symbol}} - {{hodling.crypto}}</div>
+          </div>
+          <div class="card-body pb-0 row" style="margin-bottom: 1rem">
+            <div class="col-6">
+              <div>Días hodling:</div>
+              <div class="text-value">{{hodling.hodlingDays}}</div>
+            </div>
+            <div class="col-6">
+              <div>Valor actual:</div>
+              <div class="text-value">{{hodling.currentValue}}</div>
+            </div>
+            <div class="col-6">
+              <div>Valor inicial:</div>
+              <div class="text-value">{{hodling.initialValue}}</div>
+            </div>
+            <div class="col-6">
+              <div>Rendimiento primer año:</div>
+              <div class="text-value">{{hodling.firstYearReturn}}</div>
+            </div>
+            <div class="col-6">
+              <div>Rendimiento ultimo año:</div>
+              <div class="text-value">{{hodling.lastYearReturn}}</div>
+            </div>
+            <div class="col-6">
+              <div>Rendimiento al día:</div>
+              <div class="text-value">{{hodling.currentReturn}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+
+</div><!--/.row-->
+</div>
+</div>

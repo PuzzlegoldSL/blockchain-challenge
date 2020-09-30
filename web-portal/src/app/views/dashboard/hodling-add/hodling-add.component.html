@@ -1,0 +1,92 @@
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+        <span class="navbar-brand mb-0 h1">Hodling actual</span>
+        <form class="form-inline">
+            <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
+                data-target="#addHodlingModal"><b>Agregar</b></button>
+        </form>
+    </nav>
+
+    <div class="row" *ngIf="!hodlings.length">
+        <div class="col-12">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">No tienes criptomonedas en Hodling aún, presiona el botón 'Agregar'.</h5>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let hodling of hodlings">
+            <div class="card card-accent-success mt-3">
+                <div class="btn-group float-right card-header" dropdown>
+
+                    <img [src]="hodling.logo" style="width: 2.5rem">
+                    <div class="text-value align-content-center" style="
+            margin: 5px">{{hodling.crypto}}</div>
+                    </div>
+                <div class="card-body">
+                    <div class="row"><label><b>Cantidad: </b>{{hodling.quantity}}</label></div>
+                    <div class="row"><label><b>Fecha inicio: </b>{{hodling.initDate}}</label></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addHodlingModal" tabindex="-1" role="dialog" aria-labelledby="eaddHodlingModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Agregar Hodling</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="addHodlingForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <div class="modal-body">
+                    <div class="row mt-3">
+                        <div class="col-8 col-sm-6">
+                            <label><b>Criptomoneda:</b></label>
+                        </div>
+                        <div class="col-8 col-sm-6">
+                            <select class="form-control" formControlName="inCrypto">
+                                <option *ngFor="let availableCrypto of availableCryptosMetadata"
+                                    value="{{availableCrypto.symbol}}">{{availableCrypto.crypto}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-8 col-sm-6">
+                            <label><b>Cantidad:</b></label>
+                        </div>
+                        <div class="col-8 col-sm-6">
+                            <input type="number" step="any" class="form-control" formControlName="inQty" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-8 col-sm-6">
+                            <label><b>Fecha y hora inicio:</b></label>
+                        </div>
+                        <div class="col-8 col-sm-6">
+                            <input type="date" class="form-control" formControlName="inDate"> 
+                            <input type="time" class="form-control" formControlName="inTime">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" [disabled]="addHodlingForm.invalid">Agregar</button>
+                    <button #closeModalBtn type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
