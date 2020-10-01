@@ -11,7 +11,7 @@ import {CryptoHodlingBalanceService} from '../../services/crypto-holding-balance
     templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-    private availableCryptos: any[] = ['Bitcoin', 'Ethereum', 'XRP', 'Polkadot %5BIOU%5D', 'Litecoin'];
+    private availableCryptos: any[] = ['Bitcoin', 'Ethereum', 'XRP', 'Polkadot', 'Litecoin'];
     cryptos: any[];
     totalBalanceInEur: any;
     totalBalanceInBtc: any;
