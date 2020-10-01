@@ -32,6 +32,9 @@ export class DashboardComponent implements OnInit {
 
         this.cryptoMetadataService.getMetadata(this.availableCryptos.toString()).then(result => {
             this.availableCryptosMetadata = result;
+            this.availableCryptosMetadata.map((e) => {
+                e.isActive = true;
+            })
             console.log(result);
         });
         // this.processHodlingDetailResponses([{},{},{},{},{}])
