@@ -1,0 +1,8 @@
+spring:
+  security:
+    #CORS config
+    config:
+      allowedOrigin: '*'
+      allowedHeader: 'authorization, content-type, x-xsrf-token'
+      allowedMethod: 'POST, GET, OPTIONS, DELETE, PATCH, PUT'
+      allowedCredentials: true
