@@ -2,13 +2,13 @@
 Servicios web para resolver práctica sobre exchange y blockchain
 
 ## Tabla de contenidos
-- [Prerrequisitos](#Nebular)
-    - [Java, JDK 11](#Java,)
-    - [Apache Maven](#Maven)
-    - [Git](#Git)
-- [Instalación](#Nebular)
-    - [Descarga](#Java,)
-    - [Ejecución](#Maven)
+- [Prerrequisitos](#prerrequisitos)
+    - [Java, JDK 11](#java-jdk-11)
+    - [Apache Maven](#apache-maven)
+    - [Git](#git)
+- [Instalación](#instalacin-del-proyecto-backend-api)
+    - [Descarga](#descarga)
+    - [Ejecución](#ejecucin)
 
 ## Prerrequisitos
 ### Java, JDK 11
