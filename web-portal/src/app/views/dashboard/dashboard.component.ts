@@ -6,6 +6,7 @@ import {CryptoMetadataService} from '../../services/crypto-metadata.service';
 import * as moment from 'moment';
 import {BodyOutputType, Toast, ToasterService} from 'angular2-toaster';
 import {CryptoHodlingBalanceService} from '../../services/crypto-holding-balance.service';
+import {DecimalPipe} from '@angular/common';
 
 @Component({
     templateUrl: 'dashboard.component.html'
@@ -24,7 +25,8 @@ export class DashboardComponent implements OnInit {
 
     constructor(private cryptoHodlingService: CryptoHodlingDetailsService, private cryptoMetadataService: CryptoMetadataService,
                 private toasterService: ToasterService,
-                private cryptoHodlingBalanceService: CryptoHodlingBalanceService) {
+                private cryptoHodlingBalanceService: CryptoHodlingBalanceService,
+                private decimalPipe: DecimalPipe) {
     }
 
 
@@ -70,15 +72,19 @@ export class DashboardComponent implements OnInit {
             logo: hodling.logo
         }));
         hodlingDetailList.forEach((hodlingDetail: any) => {
-            hodlingDetail.currentValue = currentValueFromResponse[hodlingDetail.symbol] || '-';
-            hodlingDetail.initialValue = initialValueResponse[hodlingDetail.symbol] || '-';
-            hodlingDetail.currentReturn = currentReturnFromResponse[hodlingDetail.symbol] || '-';
-            hodlingDetail.firstYearReturn = firstYearReturnFromResponse[hodlingDetail.symbol] || '-';
-            hodlingDetail.lastYearReturn = lastYearReturnFromResponse[hodlingDetail.symbol] || '-';
+            hodlingDetail.currentValue = this.getNumberOrNA(currentValueFromResponse[hodlingDetail.symbol]);
+            hodlingDetail.initialValue = this.getNumberOrNA(initialValueResponse[hodlingDetail.symbol]);
+            hodlingDetail.currentReturn = this.getNumberOrNA(currentReturnFromResponse[hodlingDetail.symbol]);
+            hodlingDetail.firstYearReturn = this.getNumberOrNA(firstYearReturnFromResponse[hodlingDetail.symbol]);
+            hodlingDetail.lastYearReturn = this.getNumberOrNA(lastYearReturnFromResponse[hodlingDetail.symbol]);
             hodlingDetail.hodlingDays = moment.duration(moment().diff(moment(moment(hodlingDetail.initDate)))).asDays().toFixed(0);
         });
         this.cryptos = hodlingDetailList;
         console.log('%o', this.cryptos);
+    }
+
+    private getNumberOrNA(value) {
+        return value && (this.decimalPipe.transform(value, '1.0-4') + ' €') || '-';
     }
 
     private buildBodyRequestHodlingData(hodling, customDate?: string) {

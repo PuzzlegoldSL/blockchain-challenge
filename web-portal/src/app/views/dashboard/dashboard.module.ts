@@ -6,7 +6,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DecimalPipe} from '@angular/common';
 import {ToasterModule} from 'angular2-toaster';
 import { HodlingAddComponent } from './hodling-add/hodling-add.component';
 
@@ -21,6 +21,7 @@ import { HodlingAddComponent } from './hodling-add/hodling-add.component';
     BsDropdownModule,
     ButtonsModule.forRoot()
   ],
+  providers: [DecimalPipe],
   declarations: [ DashboardComponent, HodlingAddComponent ]
 })
 export class DashboardModule { }

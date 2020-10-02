@@ -22,8 +22,8 @@
                             Rendimiento
                         </div>
                         <div class="card-body">
-                            <p class="h1">{{totalEurosProfitPercent}}%</p>
-                            <p class="h3">{{totalEurosProfit}} €</p>
+                            <p class="h1">{{totalEurosProfitPercent | number:'1.0-4'}}%</p>
+                            <p class="h3">{{totalEurosProfit | number:'1.0-4'}} €</p>
                         </div>
                     </div>
                 </div>
@@ -61,23 +61,23 @@
             </div>
             <div class="col-6">
               <div>Valor actual:</div>
-              <div class="text-value">{{hodling.currentValue}} €</div>
+              <div class="text-value">{{hodling.currentValue}}</div>
             </div>
             <div class="col-6">
               <div>Valor inicial:</div>
-              <div class="text-value">{{hodling.initialValue}} €</div>
+              <div class="text-value">{{hodling.initialValue}}</div>
             </div>
             <div class="col-6">
               <div>Rendimiento primer año:</div>
-              <div class="text-value">{{hodling.firstYearReturn}} €</div>
+              <div class="text-value">{{hodling.firstYearReturn}}</div>
             </div>
             <div class="col-6">
               <div>Rendimiento ultimo año:</div>
-              <div class="text-value">{{hodling.lastYearReturn}} €</div>
+              <div class="text-value">{{hodling.lastYearReturn}}</div>
             </div>
             <div class="col-6">
               <div>Rendimiento al día:</div>
-              <div class="text-value">{{hodling.currentReturn}} €</div>
+              <div class="text-value">{{hodling.currentReturn}}</div>
             </div>
           </div>
         </div>
